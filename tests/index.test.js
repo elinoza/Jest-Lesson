@@ -36,7 +36,7 @@ describe("Stage I: Testing tests", () => {
     })
 
 })
-ç
+
 
 describe("Stage II: testing user creation and login", () => {
     const validCredentials = {
