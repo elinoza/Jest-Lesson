@@ -5,6 +5,21 @@ const mongoose = require("mongoose")
 const UserSchema = require("../src/services/users/schema")
 const UserModel = require("mongoose").model("User", UserSchema)
 
+// When the pipeline is correctly setup, start writing these tests and their implementation:
+
+// When providing the Login endpoint with incorrect credentials:
+// expect requests to be rejected with code 401
+
+// When providing the Login endpoint with correct credentials:
+// expect a valid JWT Access token back (use jwt.verify as always)
+
+// When calling a “/cats” endpoint with the previously generated token:
+// expect requests to be accepted with 200 code
+// Expect the response.body.url to be defined
+// Expect the typeof url in response.body to be “string”
+// When calling the Cats endpoint without a valid token
+// expect requests to be rejected with code 401
+
 beforeAll((done) => {
     mongoose.connect(`${process.env.ATLAS_URL}/test`,
         { useNewUrlParser: true, useUnifiedTopology: true },
@@ -73,7 +88,7 @@ describe("Stage II: testing user creation and login", () => {
     it("should NOT return an id from a /users/register endpoint when provided with incorrect credentials", async () => {
         const response = await request.post("/users/register").send(invalidCredentials)
 
-        expect(response.status).toBe(400)
+        expect(response.status).toBe(401)
         expect(response.body.errorCode).toBe("wrong_credentials")
     })
 
